@@ -21,6 +21,10 @@ This part is a replacement for the 1084 power switch bracket that is used to mou
 
 A simple clip piece as a replacement for my HP Vectra Pentium case face plate
 
+## Fridge Door Handle Connection Socket
+
+A replacement for a Samsung fridge door socket. This socket holds a metal clip that latches onto the metal slug that is attached to the main door.
+
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
