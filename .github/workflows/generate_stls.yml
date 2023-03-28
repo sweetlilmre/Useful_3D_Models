@@ -40,13 +40,11 @@ jobs:
           sudo apt-get install -y --no-install-recommends openscad
           chmod +x ./generate-stls.sh
           ./generate-stls.sh
-          ls -1 ./generated
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
           path: './generated'
       - name: Deploy to GitHub Pages
         id: deployment
