@@ -6,6 +6,8 @@ $totalHeight = 28;
 $clipGapHeight = 5;
 // height of the retaining notch for the spring clip on the outer tube
 $clipRetainHeight = 4;
+// the depth or cut into the outer tube to hold the retaining clip 
+$clipRetainDepth = 1.6;
 // height of the end cap of the inner tube
 $endCapHeight = 3;
 // diameter of the screw hole in the end cap
@@ -38,7 +40,7 @@ difference()
       difference()
       {
         cylinder(h=$clipRetainHeight, d=$outerDiam+1, center=true);
-        cylinder(h=$clipRetainHeight+1, d=$outerDiam-1.6, center=true);
+        cylinder(h=$clipRetainHeight+1, d=$outerDiam-$clipRetainDepth, center=true);
       }
     }
   }
