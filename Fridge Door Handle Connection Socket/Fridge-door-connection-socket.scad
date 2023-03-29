@@ -17,7 +17,7 @@ $outerDiam = 16.4;
 // diameter of the inner tube
 $innerDiam = 14;
 // wall thickness of the inner tube
-$tubeTickness = 3.5;
+$tubeThickness = 3.5;
 
 
 
@@ -34,6 +34,7 @@ difference()
       // inner cylinder cut out
       cylinder(h = $totalHeight + 1, d = $innerDiam, center = true);
     }
+    
     translate([0,0,-1])
     {
       // cut out the clip retaining notch
@@ -43,6 +44,7 @@ difference()
         cylinder(h=$clipRetainHeight+1, d=$outerDiam-$clipRetainDepth, center=true);
       }
     }
+    
   }
   // cut tube in half
   translate([0, -($outerDiam / 2) / 2, 0])
@@ -50,6 +52,7 @@ difference()
     cube([$outerDiam, $outerDiam / 2, $totalHeight + 1], center=true);
   }
 }
+
 
 // create the inner tube with end cap, screw hole and spring clip notch
 difference()
@@ -64,7 +67,7 @@ difference()
       translate([0, 0, -$endCapHeight])
       {
         // cut out to make the tube
-        cylinder(h = $totalHeight, d = ($innerDiam-$tubeTickness), center = true);
+        cylinder(h = $totalHeight, d = ($innerDiam-$tubeThickness), center = true);
       }
     }
     // cut out the screw hole

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>STL Viewer Frame</title>
+  </head>
+
+  <script>
+    function getModelURI()
+    {
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const params = Object.fromEntries(urlSearchParams.entries());
+      let model = params.model;
+      return model == undefined?"/assets/d5-basic.stl":model;
+    }
+  </script>
+
+  <body>
+    <div id="id_asset" style="width:50vw;height:50vh;margin:0 auto;"></div>
+
+    <script src="stl_viewer/stl_viewer.min.js"></script>        
+    <script>
+      var stl_viewer = new StlViewer
+      (
+        document.getElementById("id_asset"),
+        {
+          models:[{filename:getModelURI()}]
+        }
+      );
+    </script>
+  </body>
+</html>

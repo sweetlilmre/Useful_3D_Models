@@ -7,5 +7,7 @@ for file in ./**/*.scad; do
     # echo "$filePath -> $inferredPath"
     openscad "$filePath.scad" -o "./generated/$inferredPath.stl"
 done
-cp index.html ./generated
 
+cp frame.html ./generated
+cp index.html ./generated
+cp -R stl_viewer/ generated/
