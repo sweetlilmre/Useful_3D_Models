@@ -2,7 +2,7 @@ $fn=100;
 
 module clip(height, diam)
 {
-    #translate([diam+3/2-1, 0, -((height - 2)/2)]){
+    translate([diam+3/2-1, 0, -((height - 2)/2)]){
         cube([3,3,2], center=true);
     }
     difference() {
