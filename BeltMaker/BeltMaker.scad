@@ -1,7 +1,7 @@
 // Parameters for the belt
 outer_diameter = 22.5;  // Outer diameter of the belt in mm
-thickness = 2;        // Thickness of the belt in mm
-height = 4;          // Height of the belt in mm
+thickness = 1.2;        // Thickness of the belt in mm
+height = 1.2;          // Height of the belt in mm
 
 // Derived dimensions
 outer_radius = outer_diameter / 2;
