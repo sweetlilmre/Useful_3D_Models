@@ -1,10 +1,12 @@
 $fn=100;
 
+// change this for a diffent size hinge pin
+hingePinDiameter = 2;
+
 latchBaseHeight = 2.5;
 latchBaseLength = 60;
 latchBaseWidth = 32;
 hingeRadius = 3;
-hingePinDiameter = 2;
 
 module slotNegative(length) {
   radius = 2;
@@ -23,14 +25,21 @@ module slotNegative(length) {
 }
 
 module hingeRest(right) {
+  hingeWidth = 20;
   ytrans = right ? latchBaseWidth/2 : -latchBaseWidth/2;
   zrot = right ? -90 : 90;
   
-  translate([0, ytrans, latchBaseHeight/2]) {
+  
+  translate([0, ytrans, hingeRadius-latchBaseHeight/2]) {
     rotate([90, 0, zrot]) {
-      linear_extrude(height = 20, center = true, convexity = 1, twist = 0) {
-        polygon(points=[[0,0],[29,0],[7.5,13]], paths=[[0,1,2]]);
+      linear_extrude(height = hingeWidth, center = true, convexity = 1, twist = 0) {
+        polygon(points=[[0,0],[latchBaseWidth,0],[7.5,13]], paths=[[0,1,2]]);
       }
+    }
+  }
+  translate([-hingeWidth / 2, -latchBaseWidth/2, latchBaseHeight/2]) {
+    rotate([0,0,0]) {
+      cube([hingeWidth, latchBaseWidth, 0.5]);
     }
   }
 }
@@ -58,12 +67,12 @@ module leftLatch() {
     // center hinge negative cut
     translate([0, latchBaseWidth / 2, hingeRadius-latchBaseHeight/2]) {
       rotate([0,90,0]) {
-        cylinder(h = latchBaseLength - 30, r = hingeRadius + 1.1, center = true);
+        cylinder(h = latchBaseLength - 30, r = hingeRadius + 0.5, center = true);
       }
     }
   }
 
-  // left and righ hinge part
+  // left and right hinge part
   translate([0, latchBaseWidth / 2, hingeRadius-latchBaseHeight/2]) {
     rotate([0,90,0]) {
       difference() {
@@ -81,14 +90,14 @@ module rightLatch() {
     // left hinge negative cut
     translate([latchBaseLength/2-7.75, -latchBaseWidth / 2, hingeRadius-latchBaseHeight/2]) {
       rotate([0,90,0]) {
-        cylinder(h = 15.6, r = hingeRadius + 1.1, center = true);
+        cylinder(h = 15.6, r = hingeRadius + 0.5, center = true);
       }
     }
 
     // right hinge negative cut
     translate([-latchBaseLength/2+7.75, -latchBaseWidth / 2, hingeRadius-latchBaseHeight/2]) {
       rotate([0,90,0]) {
-        cylinder(h = 15.6, r = hingeRadius + 1.1, center = true);
+        cylinder(h = 15.6, r = hingeRadius + 0.5, center = true);
       }
     }
   }
@@ -103,15 +112,16 @@ module rightLatch() {
 
 difference() {
   union() {
-    translate([0, -latchBaseWidth / 2, 0]) {
+    translate([0, -latchBaseWidth / 2, latchBaseHeight/2 - hingeRadius]) {
        leftLatch();
     }
-
-    translate([0, latchBaseWidth / 2, 0]) {
-       rightLatch();
+    rotate([0,0,0]) {
+      translate([0, latchBaseWidth / 2, latchBaseHeight/2 - hingeRadius]) {
+         rightLatch();
+      }
     }
   }
-  translate([2,0,hingeRadius-latchBaseHeight/2]) {
+  translate([2,0,0]){
     rotate([0,90,0]) {
       cylinder(h = latchBaseLength, d = hingePinDiameter, center = true);
     }
